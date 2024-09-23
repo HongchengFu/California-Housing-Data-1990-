@@ -9,10 +9,10 @@ st.title('California Housing Data(1990)')
 df = pd.read_csv('housing.csv')
 
 
-house_price_filter = st.slider('Minimal Median House Pirce :', 0, 500001, 200000)  
+price_filter = st.slider('Minimal Median House Pirce :', 0, 500001, 200000)  
 st.header('See more filters in the sidebar:')
 
-choose_the_location_type = st.sidebar.multiselect(
+location_filter= st.sidebar.multiselect(
      'Choose the loctaion type',
      df.ocean_proximity.unique(),  
      df.ocean_proximity.unique())  
@@ -20,7 +20,6 @@ choose_the_location_type = st.sidebar.multiselect(
 income_level =st.sidebar.radio(
     "Select income level:",
     ('Low','Meidum','High'))
-
 
 if income_level =='Low (≤2.5)':
     filtered_df = df[df.median_income <=2.5]
@@ -41,12 +40,7 @@ if income_level == 'Low (≤2.5)':
 elif income_level == 'Medium (> 2.5 & < 4.5)':
     filtered_df = df[(df['median_income'] > 2.5) & (df['median_income'] < 4.5)]
 else:
-    filtered_df = df[df['median_income'] > 4.5]  if income_level =='Low':
-    filtered_df = df[df.median_income <=2.5]
-elif income_level =='Meidum':
-    filtered_df = df[(df.median_income >2.5)&(df.median_income <4.5)]
-else :
-    filtered_df = df[df.median_income >4.5]    
+    filtered_df = df[df['median_income'] > 4.5]  
 
 # show on map
 st.map(df)
@@ -68,3 +62,4 @@ data.median_house_value.hist(bins=30)
 
 plt.grid(True)
 st.pyplot(fig)
+
