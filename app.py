@@ -8,8 +8,7 @@ sns.set()
 st.title('California Housing Data(1990)')
 df = pd.read_csv('housing.csv')
 
-
-
+# note that you have to use 0.0 and 40.0 given that the data type of population is float
 price_filter = st.slider('Minimal median Housing Price', 0, 500001, 200000)  # min, max, default
 
 # create a multi select
@@ -47,9 +46,9 @@ elif income_level == 'Medium (> 2.5 & < 4.5)':
 else:
     filtered_df = df[df['median_income'] > 4.5]
 
+
 # show on map
 st.map(df)
-
 # show the plot
 st.subheader('The Median House Value')
 fig, ax = plt.subplots(figsize=(20, 5))
