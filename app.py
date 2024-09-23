@@ -49,21 +49,19 @@ else:
 
 # show on map
 st.map(df)
-# show the plot
-st.subheader('The Median House Value')
-fig, ax = plt.subplots(figsize=(20, 5))
+# Display a subheader for the histogram
+st.subheader('Median House Value')
+
+# Create a histogram for median house value with 30 bins
+fig, ax = plt.subplots(figsize=(20, 20))
+ax.hist(filtered_df['median_house_value'], bins=30)
+
+# Set title, labels, and y-axis limits
+ax.set_title('Histogram of Median House Value', fontsize=16)
+ax.set_xlabel('Median House Value', fontsize=12)
+ax.set_ylabel('Frequency', fontsize=12)
 
 
-median_income = df.median_house_value.value_counts()
-df.median_income.hist(bins=30)
- 
-
-fig, ax = plt.subplots(figsize=(15, 8))
-data =df[(df.median_house_value>=200000)&(df.median_income<=2.5)]
-
-data.median_house_value.hist(bins=30)
-
-
-plt.grid(True)
+# Display the histogram
 st.pyplot(fig)
 
