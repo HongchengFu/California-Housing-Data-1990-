@@ -34,10 +34,10 @@ else:
 
 
 
-filtered_df= df[(df.median_house_value >= price_filter)]
+df= df[(df.median_house_value >= price_filter)]
 
 
-filtered_df= df[df.ocean_proximity.isin(location_filter)]
+df= df[df.ocean_proximity.isin(location_filter)]
 
 if income_level == 'Low (≤2.5)':
    filtered_df = df[df['median_income'] <= 2.5]
@@ -48,5 +48,24 @@ else:
 
 
 # show on map
-st.map(filtered_df)
+st.map(df)
+
+# show the plot
+st.subheader('The Median House Value')
+fig, ax = plt.subplots(figsize=(20, 5))
+
+
+median_income = df.median_house_value.value_counts()
+df.median_income.hist(bins=30)
+ 
+
+fig, ax = plt.subplots(figsize=(15, 8))
+data =df[(df.median_house_value>=200000)&(df.median_income<=2.5)]
+
+data.median_house_value.hist(bins=30)
+
+
+plt.grid(True)
+st.pyplot(fig)
+
 
