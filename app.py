@@ -49,6 +49,11 @@ st.subheader('The Median House Value')
 
 fig, ax = plt.subplots(figsize=(15, 8))
 
+ax.set_title('A Histogram of The Median House Value')  
+ax.set_xlabel('The Median House Value') 
+ax.set_ylabel('Number') 
+
+
 if income_level == 'Low':
    data =df[(df.median_house_value>=200000)&(df.median_income<=2.5)]
 elif income_level == 'Medium':
