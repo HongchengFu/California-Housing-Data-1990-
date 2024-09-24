@@ -34,7 +34,7 @@ df= df[df.ocean_proximity.isin(location_filter)]
 if income_level == 'Low':
    df = df[df['median_income'] <= 2.5]
 elif income_level == 'Medium':
-   df = df[(df['median_income'] > 2.5) & (df['median_income'] < 4.5)]
+   df = df[(df['median_income'] > 2.5) & (df['median_income'] <= 4.5)]
 else:
    df= df[df['median_income'] > 4.5]
 
@@ -52,8 +52,14 @@ df.median_income.hist(bins=30)
  
 
 fig, ax = plt.subplots(figsize=(15, 8))
-data =df[(df.median_house_value>=200000)&(df.median_income<=2.5)]
 
+if income_level == 'Low':
+   data =df[(df.median_house_value>=200000)&(df.median_income<=2.5)]
+elif income_level == 'Medium':
+   data =df[(df.median_house_value>=200000)&(df.median_income>2.5)&(df.median_income<=4.5)]
+else:
+   data =df[(df.median_house_value>=200000)&(df.median_income>4.5)]
+     
 data.median_house_value.hist(bins=30)
 
 
