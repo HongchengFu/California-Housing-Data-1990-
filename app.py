@@ -44,12 +44,7 @@ st.map(df)
 
 # show the plot
 st.subheader('The Median House Value')
-fig, ax = plt.subplots(figsize=(20, 5))
 
-
-median_income = df.median_house_value.value_counts()
-df.median_income.hist(bins=30)
- 
 
 fig, ax = plt.subplots(figsize=(15, 8))
 
