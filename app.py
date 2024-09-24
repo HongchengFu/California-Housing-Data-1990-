@@ -40,15 +40,15 @@ df = df[df.median_house_value >= price_filter]
 df = df[df.ocean_proximity.isin(location_filter)]
 
 if income_level == 'Low (≤2.5)':
-    filtered_df = df[df['median_income'] <= 2.5]
+   df = df[df['median_income'] <= 2.5]
 elif income_level == 'Medium (> 2.5 & < 4.5)':
-    filtered_df = df[(df['median_income'] > 2.5) & (df['median_income'] < 4.5)]
+   df = df[(df['median_income'] > 2.5) & (df['median_income'] < 4.5)]
 else:
-    filtered_df = df[df['median_income'] > 4.5]
+   df = df[df['median_income'] > 4.5]
 
 
 # show on map
-st.map(filtered_df)
+st.map(df)
 # Display a subheader for the histogram
 st.subheader('Median House Value')
 
