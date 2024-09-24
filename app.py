@@ -25,11 +25,11 @@ income_level = st.sidebar.radio(
 
 # Filter the dataframe based on the selected income level
 if income_level == 'Low (≤2.5)':
-    filtered_df = df[df['median_income'] <= 2.5]
+    filtered_df1 = df[df['median_income'] <= 2.5]
 elif income_level == 'Medium (> 2.5 & < 4.5)':
-    filtered_df = df[(df['median_income'] > 2.5) & (df['median_income'] < 4.5)]
+    filtered_df2 = df[(df['median_income'] > 2.5) & (df['median_income'] < 4.5)]
 else:
-    filtered_df = df[df['median_income'] > 4.5]
+    filtered_df3 = df[df['median_income'] > 4.5]
 
 
 
@@ -40,29 +40,14 @@ df = df[df.median_house_value >= price_filter]
 df = df[df.ocean_proximity.isin(location_filter)]
 
 if income_level == 'Low (≤2.5)':
-   df = df[df['median_income'] <= 2.5]
+   df = filtered_df1
 elif income_level == 'Medium (> 2.5 & < 4.5)':
-   df = df[(df['median_income'] > 2.5) & (df['median_income'] < 4.5)]
+   df = filtered_df2
 else:
-   df = df[df['median_income'] > 4.5]
+   df = filtered_df3
 
 
 # show on map
 st.map(df)
-# Display a subheader for the histogram
-st.subheader('Median House Value')
-
-# Create a histogram for median house value with 30 bins
-fig, ax = plt.subplots(figsize=(20, 20))
-ax.hist(filtered_df['median_house_value'], bins=30)
-
-# Set title, labels, and y-axis limits
-ax.set_title('Histogram of Median House Value', fontsize=16)
-ax.set_xlabel('Median House Value', fontsize=12)
-ax.set_ylabel('Frequency', fontsize=12)
-
-
-# Display the histogram
-st.pyplot(fig)
 
 
